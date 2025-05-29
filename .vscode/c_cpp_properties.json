@@ -1,0 +1,70 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/home/rey/HW_Dev/hw-fd-firstmile/include",
+                "/home/rey/HW_Dev/hw-fd-firstmile/src",
+                "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit ADXL345",
+                "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit Unified Sensor",
+                "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit BusIO",
+                "/home/rey/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/I2Cdevlib-ITG3200",
+                "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/I2Cdevlib-Core",
+                "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/QMC5883LCompass/src",
+                "/home/rey/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/home/rey/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/home/rey/.platformio/packages/framework-arduino-avr/variants/standard",
+                "/home/rey/HW_Dev/hw-fd-firstmile/lib/calibration",
+                "/home/rey/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/home/rey/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/home/rey/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/rey/HW_Dev/hw-fd-firstmile/include",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/src",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit ADXL345",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit Unified Sensor",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit BusIO",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/I2Cdevlib-ITG3200",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/I2Cdevlib-Core",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/QMC5883LCompass/src",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/lib/calibration",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=60118",
+                "ARDUINO_AVR_UNO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++11",
+            "compilerPath": "/home/rey/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
