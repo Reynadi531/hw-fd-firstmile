@@ -10,6 +10,8 @@
             "includePath": [
                 "/home/rey/HW_Dev/hw-fd-firstmile/include",
                 "/home/rey/HW_Dev/hw-fd-firstmile/src",
+                "/home/rey/HW_Dev/hw-fd-firstmile/lib/calibration",
+                "/home/rey/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit ADXL345",
                 "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit Unified Sensor",
                 "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit BusIO",
@@ -20,8 +22,6 @@
                 "/home/rey/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 "/home/rey/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/home/rey/.platformio/packages/framework-arduino-avr/variants/standard",
-                "/home/rey/HW_Dev/hw-fd-firstmile/lib/calibration",
-                "/home/rey/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "/home/rey/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "/home/rey/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 ""
@@ -31,6 +31,8 @@
                 "path": [
                     "/home/rey/HW_Dev/hw-fd-firstmile/include",
                     "/home/rey/HW_Dev/hw-fd-firstmile/src",
+                    "/home/rey/HW_Dev/hw-fd-firstmile/lib/calibration",
+                    "/home/rey/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit ADXL345",
                     "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit Unified Sensor",
                     "/home/rey/HW_Dev/hw-fd-firstmile/.pio/libdeps/uno/Adafruit BusIO",
@@ -41,8 +43,6 @@
                     "/home/rey/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     "/home/rey/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/home/rey/.platformio/packages/framework-arduino-avr/variants/standard",
-                    "/home/rey/HW_Dev/hw-fd-firstmile/lib/calibration",
-                    "/home/rey/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "/home/rey/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "/home/rey/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     ""

@@ -6,17 +6,18 @@
 Calibration cal;
 QMC5883LCompass compass;
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
 
-  pinMode(CALIBRATION_DIP_SWITCH_1, INPUT_PULLUP);
+  pinMode(CALIBRATION_F_PIN, INPUT_PULLUP);
+  cal.setCalibrationForcePin(CALIBRATION_F_PIN);
 
   cal.initMagnetoSensor(compass);
-  
-  if (digitalRead(CALIBRATION_DIP_SWITCH_1) == LOW) {
-    cal.magnetoCalibration();
-  }
+
+  cal.magnetoCalibration();
 }
 
-void loop() {
+void loop()
+{
 }

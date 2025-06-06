@@ -1,8 +1,10 @@
 #include <Arduino.h>
 #include <calibration.h>
 #include <EEPROM.h>
-
 #include <QMC5883LCompass.h>
+
+#define CALIBRATION_FLAG_ADDRESS 0
+#define CALIBRATION_FLAG 0xAA
 
 void Calibration::initMagnetoSensor(QMC5883LCompass &compassSensor)
 {
@@ -10,34 +12,25 @@ void Calibration::initMagnetoSensor(QMC5883LCompass &compassSensor)
     this->compass->init();
 }
 
+void Calibration::setCalibrationForcePin(int pin) {
+    this->calibration_F_pin = pin;
+}
+
 void Calibration::magnetoCalibration()
 {
     this->checkMagnetoCalibration();
-    if (this->isMagnetoCalibrated)
+    if (this->isMagnetoCalibrated == true)
     {
-        Serial.println("Magnetometer is already calibrated. Do you want to recalibrate? (y/n)");
-        while (true)
+        Serial.println("Magnetometer is already calibrated. Force calibration by conecting D2 pin to GND.");
+        if (digitalRead(this->calibration_F_pin) == LOW)
         {
-            if (Serial.available() > 0)
-            {
-                char response = Serial.read();
-                if (response == 'y' || response == 'Y')
-                {
-                    this->isMagnetoCalibrated = false;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        EEPROM.put(i * sizeof(float), 0.0f);
-                        EEPROM.put((i + 3) * sizeof(float), 0.0f);
-                    }
-                    
-                    break;
-                }
-                else if (response == 'n' || response == 'N')
-                {
-                    Serial.println("Skipping calibration.");
-                    return;
-                }
-            }
+            Serial.println("Forcing calibration...");
+            EEPROM.write(CALIBRATION_FLAG_ADDRESS, 0x00);
+        }
+        else
+        {
+            Serial.println("Calibration skipped.");
+            return;
         }
     }
     
@@ -52,15 +45,15 @@ void Calibration::magnetoCalibration()
     float scales[3];
 
     Serial.println("CALIBRATION COMPLETE. Saving calibration data to EEPROM...");
+    EEPROM.write(CALIBRATION_FLAG_ADDRESS, CALIBRATION_FLAG); 
     for (int i = 0; i < 3; i++)
     {
         offsets[i] = this->compass->getCalibrationOffset(i);
         scales[i] = this->compass->getCalibrationScale(i);
-        EEPROM.put(i * sizeof(float), offsets[i]);
-        EEPROM.put((i + 3) * sizeof(float), scales[i]);
+        EEPROM.put(CALIBRATION_FLAG_ADDRESS + 1 + i * sizeof(float), offsets[i]);
+        EEPROM.put(CALIBRATION_FLAG_ADDRESS + 1 + (i + 3) * sizeof(float), scales[i]);
     }
 
-    Serial.println("DONE. Copy the lines below and paste it into your projects sketch.);");
     Serial.println();
     Serial.print("Magnetometer Calibration Offsets: ");
     for (int i = 0; i < 3; i++)
@@ -79,26 +72,25 @@ void Calibration::magnetoCalibration()
 
 void Calibration::checkMagnetoCalibration()
 {
+    uint8_t flag;
+    EEPROM.get(CALIBRATION_FLAG_ADDRESS, flag);
+    
+    if (flag != CALIBRATION_FLAG)
+    {
+        this->isMagnetoCalibrated = false;
+        Serial.println("Magnetometer is not calibrated. Please run magnetoCalibration() to calibrate.");
+        return;
+    }
+
     float offsets[3];
     float scales[3];
     for (int i = 0; i < 3; i++)
     {
-        EEPROM.get(i * sizeof(float), offsets[i]);
-        EEPROM.get((i + 3) * sizeof(float), scales[i]);
-        if (offsets[i] == 0.0f || scales[i] == 0.0f)
-        {
-            this->isMagnetoCalibrated = false;
-            break;
-        }
+        EEPROM.get(CALIBRATION_FLAG_ADDRESS + 1 + i * sizeof(float), offsets[i]);
+        EEPROM.get(CALIBRATION_FLAG_ADDRESS + 1 + (i + 3) * sizeof(float), scales[i]);
     }
-    if (this->isMagnetoCalibrated)
-    {
-        Serial.println("Magnetometer is calibrated.");
-        this->compass->setCalibrationOffsets(offsets[0], offsets[1], offsets[2]);
-        this->compass->setCalibrationScales(scales[0], scales[1], scales[2]);
-    }
-    else
-    {
-        Serial.println("Magnetometer is not calibrated. Please run magnetoCalibration() to calibrate.");
-    }
+
+    this->isMagnetoCalibrated = true;
+    this->compass->setCalibrationOffsets(offsets[0], offsets[1], offsets[2]);
+    this->compass->setCalibrationScales(scales[0], scales[1], scales[2]);
 }
